@@ -45,6 +45,11 @@ public class PostagemController {
 		return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<Postagem>> getByPostagemId(@PathVariable Long id) {
+		return ResponseEntity.ok(postagemRepository.findById(id));
+	}
+
 	@PostMapping
 	public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem) {
 		if (temaRepository.existsById(postagem.getTema().getId()))
